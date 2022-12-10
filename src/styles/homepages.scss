@@ -1,0 +1,66 @@
+@import './base.scss';
+
+* {
+    box-sizing: inherit;
+}
+.homepage {
+    font-size: 1.6rem;
+    background-color: #f5f5f5;
+    margin-top: 12rem;
+    .main-board {
+        height: calc(100vh - 11.8rem);
+        .main-board-product {
+            margin-top: 100rem;
+            .main-board-product-bar {
+                background-color: $white-color;
+                width: inherit;
+                height: 5.7rem;
+                border-bottom: 0.3rem #f53e2d;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.8rem;
+                border-bottom: 0.5rem $primary-color solid;
+            }
+
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .product-child:hover {
+                border: #ff6533 1px solid;
+            }
+            .product-child {
+                color: $black-color;
+                text-decoration: none;
+                box-sizing: border-box;
+                border: $background-color 1px solid;
+                margin: 1rem auto;
+                background-color: $white-color;
+                box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 2px;
+                font-size: 1.2rem;
+                .product-child-detail {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 4rem 0.5rem 1rem 0.5rem;
+                    border-radius: 0.1rem;
+                    .price {
+                        color: $primary-color;
+                        font-weight: 400;
+                        font-size: 1.6rem;
+                    }
+                    .saled {
+                        color: $saled-color;
+                        font-size: 1.2rem;
+                    }
+                }
+                img {
+                    width: 18.8rem;
+                    height: 18.8rem;
+                    margin: 0.2rem;
+                }
+                width: 16%;
+            }
+        }
+    }
+}
