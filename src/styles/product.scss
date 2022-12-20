@@ -1,0 +1,161 @@
+@import './base.scss';
+.product {
+    font-size: 1.4rem;
+    background-color: $white-color;
+    width: 99.3rem;
+    padding: 0 3rem 1rem;
+    .header {
+        padding: 1.8rem 0rem;
+        text-align: start;
+        border-bottom: 1px solid #ccc;
+        .title {
+            font-size: 2rem;
+            color: #333333;
+        }
+        .content {
+            margin: 3px 0px 0px;
+            color: #555555;
+        }
+    }
+    .main {
+        display: flex;
+        .list-product {
+            display: flex;
+            flex-wrap: wrap;
+            width: 65%;
+            .product-child:hover {
+                border: #ff6533 1px solid;
+            }
+            .product-child {
+                width: 15rem;
+                color: $black-color;
+                text-decoration: none;
+                box-sizing: border-box;
+                border: $background-color 1px solid;
+                margin: 1rem 0rem;
+                background-color: $white-color;
+                box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 2px;
+                font-size: 1.2rem;
+                .product-name {
+                    height: 6.4rem;
+                }
+                .product-child-detail {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 4rem 0.5rem 1rem 0.5rem;
+                    border-radius: 0.1rem;
+                    .price {
+                        color: $primary-color;
+                        font-weight: 400;
+                        font-size: 1.6rem;
+                    }
+                    .saled {
+                        color: $saled-color;
+                        font-size: 1.2rem;
+                    }
+                }
+                img {
+                    width: 10rem;
+                    height: 10rem;
+                    margin: 0.2rem;
+                }
+            }
+        }
+        .upload {
+            width: 33%;
+            border-left: 1px solid #ccc;
+            padding: 1rem;
+            text-align: start;
+            margin: 0rem 0rem 2rem 0rem;
+            .title {
+                margin-bottom: 2rem;
+                font-size: 1.6rem;
+            }
+            .photo {
+                margin-bottom: 2rem;
+                .list-add-photo {
+                    .icon {
+                        cursor: pointer;
+                        height: 10rem;
+                        width: 10rem;
+                    }
+                    .child-photo {
+                        height: 8rem;
+                        width: 8rem;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+            .input-name {
+                width: 30rem;
+                margin: 0rem 0rem 2rem 0rem;
+                height: 4rem;
+                font-size: 1.5rem;
+                outline: 0;
+            }
+            .product-price {
+                margin: 0rem 0rem 2rem 0rem;
+                display: flex;
+                justify-content: space-between;
+                input {
+                    width: 5rem;
+                    outline: 0;
+                }
+                span {
+                    margin-right: 1rem;
+                }
+                .price {
+                    width: 9rem;
+                }
+            }
+            .product-color {
+                .header-color {
+                    display: flex;
+                    height: 2rem;
+                    .title-color {
+                        margin: 0rem 2rem 2rem 0rem;
+                        width: 6rem;
+                    }
+                    .child-color {
+                        margin-right: 1rem;
+                        border: 1px solid #999;
+                        height: 2rem;
+                        text-align: center;
+                    }
+                }
+                .input-color {
+                    margin: 1rem 1rem 1rem 8rem;
+                    width: 5rem;
+                    height: 2.5rem;
+                    outline: 0;
+                }
+                .add-color {
+                    border: none;
+                    background-color: $primary-color;
+                    color: $white-color;
+                    height: 2.5rem;
+                    border-radius: 2px;
+                }
+            }
+            .product-decription {
+                textarea {
+                    width: 30rem;
+                    height: 10rem;
+                    font-size: 1.5rem;
+                    outline: 0;
+                }
+            }
+            .finish-upload {
+                margin-top: 2rem;
+                button {
+                    border: none;
+                    border-radius: 3px;
+                    color: $white-color;
+                    background-color: $primary-color;
+                    width: 10rem;
+                    height: 4rem;
+                }
+            }
+        }
+    }
+}

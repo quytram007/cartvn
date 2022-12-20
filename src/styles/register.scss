@@ -3,14 +3,14 @@
 .login-register {
     height: 100vh;
     padding: 10rem 0 0 60.4rem;
-    background-image: linear-gradient(0, #ff6533, #f53e2d);
+    background-image: linear-gradient(0, #13293d, #045e93);
     .login {
         margin-top: 5rem;
         border-radius: 5px;
         background-color: $white-color;
         font-size: 1.6rem;
         width: 40rem;
-        height: 48.2rem;
+        height: 55rem;
         display: block;
         .title {
             display: flex;
@@ -34,7 +34,7 @@
             padding: 0 1rem;
             font-size: 1.4rem;
             color: $white-color;
-            background-color: #ee4d2d;
+            background-color: $primary-color;
             box-shadow: 0 1px 1px rgb(0 0 0 / 9%);
             border: none;
             border-radius: 2px;
@@ -63,6 +63,47 @@
                 color: $primary-color;
                 font-weight: 400;
                 font-size: 1.5rem;
+            }
+        }
+        .verify{
+            padding: 2rem;
+            .title{
+            display: flex;
+            font-size: 2rem;
+            height: 10.3rem;
+            padding: 1.5rem ;
+            align-items: center;
+            }
+            .content{
+                font-size: 1.4rem;
+                padding: 0rem 1.5rem ;
+                text-align: left ;
+                color: #999;
+            }
+            .input-code{
+                padding: 2rem 1.5rem ;
+                text-align: start;
+                input{
+                    width: 22rem;
+                    margin-right: 2rem;
+                    font-size: 1.8rem;
+                }
+                button{
+                    height: 4rem;
+                    width: 8rem;
+                    border-radius: 3px;
+                    background-color: $primary-color;
+                    color: $white-color;
+                    border: none;
+                }
+            }
+            .send-again{
+                text-align: end;
+                padding: 0rem 1.5rem;
+                .send{
+                    color: $primary-color;
+                    padding: 0rem 1rem;
+                }
             }
         }
     }

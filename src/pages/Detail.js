@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useParams, useNavigate, Router } from 'react-router-dom';
 import '../styles/detail.scss';
 import axios from 'axios';
+import refreshComponent from '../components/RefreshComponent';
 
 const DEFAULT = {
     id: '01',
@@ -20,14 +21,19 @@ const DEFAULT = {
     like: false,
 };
 const BUY_DEFAULT = {
+    productImg:'',
+    productName:'',
     productId: '',
     productPrice: '',
     productColor: '',
     productSize: '',
     quantity: 1,
 };
-
+let i = 0;
 const Detail = () => {
+    const { refresh, setRefresh } = useContext(refreshComponent);
+
+    const navigate = useNavigate();
     const [productDetail, setProductDetail] = useState(DEFAULT);
 
     const productId = useParams().id;
@@ -48,37 +54,38 @@ const Detail = () => {
     }, []);
     useEffect(() => {
         const productPrice = productDetail.price - (productDetail.price * productDetail.sale) / 100;
-        setProductBuy({ ...productBuy, productPrice: productPrice, productId: productId });
+        setProductBuy({ ...productBuy, productPrice: productPrice,
+            productId: productId ,
+            productName:productDetail.name,
+            productImg: productDetail.photo[0].image,
+            });
     }, [productDetail]);
-    // try {
-    //     const abc = async () => {
-    //         const url = `http://localhost:8000/api/product/${id}`;
-    //         const { data: res } = await axios.get(url);
-    //     };
-    //     abc();
-    // } catch (error) {}
-    const handleOnAddToCart = () => {
+
+    const handleOnAddToCart = (event) => {
+        event.preventDefault();
         try {
             const addToCart = async () => {
                 const data = {
                     token: localStorage.getItem('token'),
                     dataBuy: productBuy,
                 };
-                const url = 'http://localhost:8000/api/cart';
+                const url = 'http://localhost:8000/api/cart/addtocart';
                 const { data: res } = await axios.post(url, data);
             };
             addToCart();
+            setRefresh(i++);
         } catch (error) {
             console.log(error);
         }
     };
+    const handleBuy = () => {};
     return (
         <div className="detail grid">
             <div className="img-detail">
                 <img className="img-detail-photo" src={productDetail.photo[0].image}></img>
                 <div className="all-image">
-                    {productDetail.photo.map((value) => {
-                        return <img className="mini-image-detail" src={value.image}></img>;
+                    {productDetail.photo.map((value,index) => {
+                        return <img className="mini-image-detail" key={index} src={value.image}></img>;
                     })}
                 </div>
             </div>
@@ -122,7 +129,7 @@ const Detail = () => {
                                 {productBuy.productColor === value && (
                                     <>
                                         <div className="tick-mark"></div>
-                                        <i class="far fa-check"></i>
+                                        <i className="far fa-check"></i>
                                     </>
                                 )}
                             </button>
@@ -142,7 +149,7 @@ const Detail = () => {
                                 {productBuy.productSize === value && (
                                     <>
                                         <div className="tick-mark"></div>
-                                        <i class="far fa-check"></i>
+                                        <i className="far fa-check"></i>
                                     </>
                                 )}
                             </button>
@@ -177,11 +184,13 @@ const Detail = () => {
                     </div>
                 </div>
                 <div className="buy-product genera-detail">
-                    <div className="add-to-cart" onClick={() => handleOnAddToCart()}>
-                        <i class="fal fa-cart-plus"></i>
+                    <div className="add-to-cart" onClick={(event) => handleOnAddToCart(event)}>
+                        <i className="fal fa-cart-plus"></i>
                         Thêm Vào giỏ hàng
                     </div>
-                    <div className="buy-now">Mua Ngay </div>
+                    <div className="buy-now" onClick={() => handleBuy()}>
+                        Mua Ngay{' '}
+                    </div>
                 </div>
             </div>
         </div>

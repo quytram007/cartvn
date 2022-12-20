@@ -25,7 +25,7 @@
 
             margin-top: 2rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: left;
             flex-wrap: wrap;
             .product-child:hover {
                 border: #ff6533 1px solid;
@@ -35,10 +35,14 @@
                 text-decoration: none;
                 box-sizing: border-box;
                 border: $background-color 1px solid;
-                margin: 1rem auto;
+                margin: 1rem 0.2rem;
                 background-color: $white-color;
                 box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 2px;
                 font-size: 1.2rem;
+                .product-child-name {
+                    height: 5rem;
+                    padding: 0rem 0.5rem67;
+                }
                 .product-child-detail {
                     display: flex;
                     justify-content: space-between;

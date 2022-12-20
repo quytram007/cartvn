@@ -173,7 +173,7 @@
             justify-content: center;
             align-items: center;
             background-color: #ffeee8;
-            border: 1px solid #ee4d2d;
+            border: 1px solid $primary-color;
             border-radius: 2px;
             cursor: pointer;
             .fa-cart-plus {
@@ -192,8 +192,8 @@
             justify-content: center;
             align-items: center;
             align-items: center;
-            background-color: #ee4d2d;
-            border: 1px solid #ee4d2d;
+            background-color: $primary-color;
+            border: 1px solid $primary-color;
             border-radius: 2px;
         }
     }

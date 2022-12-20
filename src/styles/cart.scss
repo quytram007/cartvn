@@ -1,0 +1,247 @@
+@import './base.scss';
+.cart{
+    position: relative;
+    max-width: 1200px;
+    margin: 15rem auto;
+    font-size: 1.6rem;
+    background-color: $white-color;
+    .child-cart{
+        padding: 0 5rem;
+        display: flex;
+        align-items: center;
+        margin-bottom: 5rem;
+        border-bottom: 1px solid #ccc;
+        height: 10rem;
+        input{
+            width: 1.8rem;
+            height: 1.8rem;
+            margin: 0 2rem;
+        }
+        .product-image{
+            width: 8rem;
+            height: 8rem;
+        }
+        .product-name{
+            width: 20.8rem;
+            font-size: 1.4rem
+        }
+        .product-price{
+            width: 20rem;
+            font-size: 1.4rem
+        }
+        .up-down-amount {
+            display: flex;
+            .volumn {
+                cursor: pointer;
+                border: 1px solid rgba(0, 0, 0, 0.09);
+                display: flex;
+                width: 3.2rem;
+                height: 3.2rem;
+                align-items: center;
+                justify-content: center;
+            }
+            .amount-number {
+                border: 1px solid rgba(0, 0, 0, 0.09);
+                display: flex;
+                width: 5rem;
+                height: 3.2rem;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .product-total{
+            width: 20rem;
+            font-size: 1.4rem;
+            color:$primary-color
+        }
+
+    }
+    .payment{   
+        background-color: $white-color ;
+        padding: 0rem 2rem;
+        position: fixed;
+        bottom: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        
+        .voucher{
+            margin-bottom: 2rem;
+            display: flex;
+            height: 5rem;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            border-bottom: 1px dashed #ccc;
+            .voucher-icon{
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-right: 1rem;
+            }
+            .title{
+                font-size: 1.6rem;
+            }
+            .choice-voucher{
+                font-size: 1.4rem;
+                margin: 0px 0px 0px 25rem;
+                color:#0055AA;
+                font-weight: 500;
+            }
+        }
+        .total-payment{
+            height: 7rem;
+            display: flex;
+            justify-content: end;
+            .total{
+                color:#EE4D2D;
+                margin: 0px  0px 0px 2rem;
+            }
+            .button-buy{
+                height: 4rem;
+                width: 21rem;
+                border-radius: 3px;
+                border: none;
+                background-color: #EE4D2D;
+                font-size: 1.4rem;
+                color:$white-color;
+                padding: 1.3rem 3.6rem;
+                margin: 0px 0rem 0px 1.5rem;
+            }
+        }
+    }
+    .voucher-page{
+        .voucher{
+            overflow: scroll;
+            border-radius: 3px;
+            padding: 0rem 0rem 3rem 0px;
+            margin: 10% auto;
+            width: 61rem;
+            height: 50rem;
+            background-color: $white-color;
+            .header-voucher{
+                background-color: $white-color;
+                width: 61rem;
+                height: 12rem;
+                position: fixed;
+                padding: 3rem 3rem 0px;
+                .input-code{
+                    background-color: #ccc;
+                    font-size: 1.4rem;
+                    width: 55.6rem;
+                    height: 7rem;
+                    padding: 1.5rem;
+                    .title{
+                        margin: 0px 1rem 0px 0px;
+                    }
+                    .voucher-code{
+                        border-radius: 3px;
+                        width: 33.8rem;
+                        height: 4rem;
+                        padding: 1rem;
+                        outline: 0;
+                        border: 1px solid rgba(0,0,0,.14);
+                    }
+                    .voucher-button{
+                        border-radius: 2px;
+                        padding: 0.8rem 1rem;
+                        margin: 0px 0px 0px 0.8rem;
+                        background-color: $white-color;
+                        border: none;
+                        height: 4rem;
+                        width:  9.5rem;
+                    }
+                }
+            }
+            .list-voucher{
+                padding: 3rem 3rem 1rem;
+                margin: 12rem 0px 0px 0px;
+                .voucher-freeship{
+                    .child-voucher{
+                        box-shadow:  rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                        border: 1px solid rgba(149, 157, 165, 0.2);
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                        .img{
+                            color: $white-color;
+                            margin-right: 2rem;
+                            background-color:#00bfa5;
+                            padding: 3rem 0px;
+                            display: block;
+                            width: 11.8rem;
+                            height: 11.8rem;
+                        }
+                        .decripstion{
+                            color:$black-color;
+                            width: 28rem;
+                        }
+                        input{
+                            margin-left: 5rem;
+                            width: 2rem;
+                            height: 2rem;
+                            outline: 0;
+                        }
+                    }
+                    
+                }
+                .voucher-discount{
+                    .child-voucher{
+                        box-shadow:  rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                        border: 1px solid rgba(149, 157, 165, 0.2);
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                        .img{
+                            color: $white-color;
+                            margin-right: 2rem;
+                            background-color:#bf4000;
+                            padding: 3rem 0px;
+                            display: block;
+                            width: 11.8rem;
+                            height: 11.8rem;
+                        }
+                        .decripstion{
+                            width: 28rem;
+                            color:$black-color
+                        }
+                         input{
+                            margin-left: 5rem;
+                            width: 2rem;
+                            height: 2rem;
+                            outline: 0;
+                        }
+                    }
+                    
+                }
+            }
+             .footer-voucher{
+                position: fixed;
+                background-color: $white-color;
+                width: 61rem;
+                height: 8rem;
+                bottom: 10rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                border-top: 1px solid#ccc;
+                button{
+                    border-radius: 3px;
+                    border: none;
+                    width: 12rem;
+                    height: 4rem;
+                }
+                .ok{
+                    background-color: #0055AA;
+                    color: $white-color;
+                }
+            }
+            
+        }
+        background-color: rgba(0,0,0,.4);
+        position:fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        
+
+    }
+}

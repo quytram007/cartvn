@@ -1,10 +1,18 @@
 import '../styles/navbar.scss';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import logo from '../assets/logo/logoCartVn.png';
+import refreshComponent from './RefreshComponent';
+import _ from 'lodash';
+
 const Navbar = () => {
+    const { refresh, setRefresh } = useContext(refreshComponent);
     const [isLogin, setIsLogin] = useState(false);
-    const [infoUser, setInfoUser] = useState({});
+    const [infoUser, setInfoUser] = useState({
+        product: [],
+    });
+
     useEffect(() => {
         const data = { token: localStorage.getItem('token') };
 
@@ -15,17 +23,20 @@ const Navbar = () => {
                 console.log(res);
                 setInfoUser({
                     fullName: res.data.fullName,
-                    countProduct: res.countProduct,
+                    avatar: res.data.avatar,
+                    product: res.product,
                 });
                 setIsLogin(true);
             };
             verify();
         } catch (error) {}
-    }, []);
+    }, [refresh]);
     const handleOnLogOut = () => {
         localStorage.removeItem('token');
         setIsLogin(false);
+        setInfoUser({});
     };
+
     return (
         <div className="navbar">
             <div className="grid">
@@ -35,8 +46,8 @@ const Navbar = () => {
                         <div className="first-navbar-left-item">Tải ứng dụng</div>
                         <div className="first-navbar-left-item">
                             Kết nối
-                            <i class="fab fa-facebook"></i>
-                            <i class="fab fa-google"></i>
+                            <i className="fab fa-facebook"></i>
+                            <i className="fab fa-google"></i>
                         </div>
                     </div>
 
@@ -55,16 +66,27 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <div className="first-navbar-right-item info">{infoUser.fullName}</div>
+                                <div className="first-navbar-right-item info">
+                                    {infoUser.avatar ? (
+                                        <img src={infoUser.avatar.url} />
+                                    ) : (
+                                        <i className="fas fa-user-circle"></i>
+                                    )}
+                                    {infoUser.fullName}
+                                </div>
 
                                 <div className="notification">
-                                    <div class="arrow-up"></div>
+                                    <div className="arrow-up"></div>
                                     <div className="square">
-                                        <div className="my-account in-square">Tài Khoản Của Tôi</div>
+                                        <Link to={'/user'} style={{ textDecoration: 'none', color: '#000' }}>
+                                            <div className="my-account in-square">Tài Khoản Của Tôi</div>
+                                        </Link>
                                         <div className="in-square">Đơn Mua</div>
-                                        <div className="logout in-square" onClick={() => handleOnLogOut()}>
-                                            Đăng Xuất
-                                        </div>
+                                        <Link to={'/'} style={{ textDecoration: 'none', color: '#000' }}>
+                                            <div className="logout in-square" onClick={() => handleOnLogOut()}>
+                                                Đăng Xuất
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </>
@@ -73,7 +95,9 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-header">
-                    <div className="logo"> </div>
+                    <Link to={'/'} className="logo">
+                        <img src={logo}></img>
+                    </Link>
                     <div className="navbar-search">
                         <input className="navbar-search-input"></input>
                         <div className="navbar-search-button">
@@ -81,8 +105,38 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="navbar-header-button-cart">
-                        <i class="fal fa-shopping-cart"></i>
-                        <div className="quantity-product-in-cart">{infoUser.countProduct}</div>
+                        <Link to={'/cart'}>
+                            <i className="fal fa-shopping-cart"></i>
+                        </Link>
+                        {infoUser.product && infoUser.product.length > 0 && (
+                            <>
+                                <div className="quantity-product-in-cart">{infoUser.product.length}</div>
+                                <div className="review-cart">
+                                    <div className="arrow-up">{}</div>
+                                    <div className="square">
+                                        {infoUser.product &&
+                                            infoUser.product.map((value, index) => {
+                                                if (index < 5)
+                                                    return (
+                                                        <div className="product-review-cart" key={index}>
+                                                            <img src={value.productImg}></img>
+                                                            <div className="text">{value.productName}</div>
+                                                            <div className="price">₫{value.productPrice}</div>
+                                                        </div>
+                                                    );
+                                            })}
+                                        <div className="footer-review-cart">
+                                            <div className="quantity-review-cart">
+                                                {infoUser.product.length} Sản Phẩm Trong Giỏ Hàng
+                                            </div>
+                                            <Link to={'/cart'}>
+                                                <button className="enter-cart">Xem Giỏ Hàng</button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,20 +1,27 @@
 @import './base.scss';
 .navbar {
+    z-index: 1;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(0, #ff6533, #f53e2d);
+    background-image: linear-gradient(0, #13293d, #1b98e0);
     height: 11.8rem;
     color: $white-color;
     padding: 0.4rem 0;
     .navbar-header {
         display: flex;
+        .logo {
+            margin: 1rem 3rem 0 6rem;
+            img {
+                width: 10rem;
+            }
+        }
         .navbar-search {
             background-color: $white-color;
             width: 84rem;
             height: 4.1rem;
-            margin: 2rem 5rem 2rem 20rem;
+            margin: 2rem 5rem 2rem 2rem;
             border-radius: 2px;
             display: flex;
             align-items: center;
@@ -50,6 +57,7 @@
             align-items: center;
             .fa-shopping-cart {
                 font-size: 2.5rem;
+                color:$white-color
             }
             .quantity-product-in-cart {
                 border: 1px solid $primary-color;
@@ -64,6 +72,80 @@
                 color: $primary-color;
                 font-size: 1.4rem;
             }
+            .review-cart {
+                z-index: 1;
+                visibility: hidden;
+                top: 3.5rem;
+                right: -5rem;
+                position: absolute;
+                .arrow-up {
+                    margin: 0 0 0 78%;
+                    width: 0;
+                    height: 0;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-bottom: 10px solid $white-color;
+                }
+                .square {
+                    border-radius: 0.2rem;
+                    width: 40rem;
+                    background-color: $white-color;
+                    padding: 1rem;
+                    color: $black-color;
+                    .in-square {
+                        cursor: pointer;
+                        margin-bottom: 2rem;
+                    }
+                    .product-review-cart{
+                        display: flex;
+                        margin-bottom: 1rem;
+                        font-size: 1.4rem;
+                        .text{
+                            font-weight: 400;
+                            padding: 1.5rem 0.5rem;
+                            width : 28rem;
+                            overflow:hidden;
+                            display:inline-block;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+
+                        }
+                        .price{
+                            font-size: 1.6rem;
+                            padding: 1.5rem 0.5rem;
+                            color:$primary-color
+
+                        }
+                        img{
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                    }
+                    .footer-review-cart{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        .quantity-review-cart{
+                            font-size: 1.2rem;
+                            color:$saled-color
+                        }
+                        .enter-cart{
+                            background-color: $primary-color;
+                            color:$white-color;
+                            border: none;
+                            border-radius: 3px;
+                            height: 3.5rem;
+                            
+                        }
+                    }
+                }
+            }
+            .fa-shopping-cart:hover ~ .review-cart {
+                visibility: inherit;
+            }
+            .review-cart:hover{
+                visibility: inherit;
+            }
         }
     }
     .first-navbar {
@@ -71,6 +153,7 @@
         font-size: 1.5rem;
         display: flex;
         justify-content: space-between;
+        
 
         .first-navbar-left {
             display: flex;
@@ -88,10 +171,31 @@
                 text-decoration: none;
                 color: $white-color;
             }
+            .info{
+                display: flex;
+                align-items: center;
+                img{
+                    display: flex;
+                    align-items: center;
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 90%;
+                    margin-right: 0.2rem;
+                }
+                i{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 0.2rem;
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
 
             .notification {
+                z-index: 1;
                 visibility: hidden;
-                top: 0.5rem;
+                top: 1.5rem;
                 right: 0.5rem;
                 position: absolute;
                 .arrow-up {

@@ -37,7 +37,7 @@ const Homepages = () => {
                             params={{ id: product.id }}
                         >
                             <img src={product.photo[0].image}></img>
-                            <div> {product.name}</div>
+                            <div className="product-child-name"> {product.name}</div>
                             <div className="product-child-detail">
                                 <div className="price"> {(product.price / 1000).toFixed(3)}</div>
                                 <div className="saled"> Đã bán {product.sold}</div>
