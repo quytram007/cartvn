@@ -4,6 +4,10 @@ import React from 'react';
 const refreshComponent = React.createContext({
     refresh: '',
     setRefresh: () => {},
+    search: '',
+    setSearch: () => {},
+    ai:'',
+    setAi:()=>{}
 });
 
 export default refreshComponent;

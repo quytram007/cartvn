@@ -4,13 +4,13 @@ import { publicRoutes } from './routes';
 import Navbar from './components/Navbar';
 import { useState, createContext, useEffect } from 'react';
 import refreshComponent from './components/RefreshComponent';
+import AI from './components/AI';
 
 function App() {
     const [refresh, setRefresh] = useState('');
-    const value = { refresh, setRefresh };
-    useEffect(() => {
-        console.log('check');
-    }, [refresh]);
+    const [search, setSearch] = useState('');
+    const [ai, setAi] = useState('');
+    const value = { refresh, setRefresh, search, setSearch, ai, setAi };
     return (
         <refreshComponent.Provider value={value}>
             <Router>
@@ -23,6 +23,7 @@ function App() {
                             return <Route key={index} path={route.path} element={<Page />} />;
                         })}
                     </Routes>
+                    <AI />
                 </div>
             </Router>
         </refreshComponent.Provider>

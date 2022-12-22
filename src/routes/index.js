@@ -3,7 +3,6 @@ import Detail from '../pages/Detail';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Cart from '../pages/Cart';
-import Test from '../pages/Test';
 import UserInfo from '../pages/UserInfo';
 
 const publicRoutes = [

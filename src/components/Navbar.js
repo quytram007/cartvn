@@ -7,11 +7,12 @@ import refreshComponent from './RefreshComponent';
 import _ from 'lodash';
 
 const Navbar = () => {
-    const { refresh, setRefresh } = useContext(refreshComponent);
+    const { refresh, setSearch } = useContext(refreshComponent);
     const [isLogin, setIsLogin] = useState(false);
     const [infoUser, setInfoUser] = useState({
         product: [],
     });
+    const [inputSearch, setInputSearch] = useState();
 
     useEffect(() => {
         const data = { token: localStorage.getItem('token') };
@@ -99,8 +100,12 @@ const Navbar = () => {
                         <img src={logo}></img>
                     </Link>
                     <div className="navbar-search">
-                        <input className="navbar-search-input"></input>
-                        <div className="navbar-search-button">
+                        <input
+                            className="navbar-search-input"
+                            value={inputSearch}
+                            onChange={(e) => setInputSearch(e.target.value)}
+                        ></input>
+                        <div className="navbar-search-button" onClick={() => setSearch(inputSearch)}>
                             <i className="fal fa-search"></i>
                         </div>
                     </div>
