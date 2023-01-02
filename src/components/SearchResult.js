@@ -3,15 +3,22 @@ import DEFAULT from '../storages/default';
 import { useContext, useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import refreshComponent from './RefreshComponent';
 const SearchResult = () => {
-    const { search, ai } = useContext(refreshComponent);
+    const { search, ai, setSearch } = useContext(refreshComponent);
     const [listProduct, setListProduct] = useState(DEFAULT);
     const [isLogin, setIsLogin] = useState(false);
-    if (ai.includes('tìm kiếm')) {
-        se
-    }
+    // console.log(ai);
+    // const _ai = ai.toLowerCase();
+    // let navigate = useNavigate();
+    // if (_ai.includes('tìm kiếm ')) {
+    //     const word = _ai.split('tìm kiếm ');
+    //     navigate('/user');
+    //     console.log(word[1]);
+    //     setSearch(word[1]);
+    // }
     useEffect(() => {
         try {
             const getProduct = async () => {

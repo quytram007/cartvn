@@ -1,137 +1,163 @@
 @import './base.scss';
-.cart {
-    position: relative;
-    max-width: 1200px;
+
+.last-payment {
     margin: 15rem auto;
     font-size: 1.6rem;
-    background-color: $white-color;
-    .child-cart {
-        padding: 0 5rem;
-        display: flex;
-        align-items: center;
-        margin-bottom: 5rem;
-        border-bottom: 1px solid #ccc;
-        height: 10rem;
-        input {
-            width: 1.8rem;
-            height: 1.8rem;
-            margin: 0 2rem;
-        }
-        .product-image {
-            width: 8rem;
-            height: 8rem;
-        }
-        .product-name {
-            width: 20.8rem;
-            font-size: 1.4rem;
-        }
-        .product-price {
-            width: 20rem;
-            font-size: 1.4rem;
-        }
-        .up-down-amount {
-            display: flex;
-            .volumn {
-                cursor: pointer;
-                border: 1px solid rgba(0, 0, 0, 0.09);
-                display: flex;
-                width: 3.2rem;
-                height: 3.2rem;
-                align-items: center;
-                justify-content: center;
-            }
-            .amount-number {
-                border: 1px solid rgba(0, 0, 0, 0.09);
-                display: flex;
-                width: 5rem;
-                height: 3.2rem;
-                align-items: center;
-                justify-content: center;
-            }
-        }
-        .product-total {
-            width: 20rem;
-            font-size: 1.4rem;
-            color: $primary-color;
-        }
-    }
-    .payment {
+    .address {
+        margin-bottom: 3rem;
+        height: 11.28rem;
         background-color: $white-color;
-        padding: 0rem 2rem;
-        position: fixed;
-        bottom: 0rem;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
-            rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-        .voucher {
+        text-align: start;
+        padding: 2.8rem 3rem 2.4rem;
+        .title {
+            font-size: 2rem;
+            color: $primary-color;
             margin-bottom: 2rem;
-            display: flex;
-            height: 5rem;
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            border-bottom: 1px dashed #ccc;
-            .voucher-icon {
-                width: 2.5rem;
-                height: 2.5rem;
+            i {
                 margin-right: 1rem;
             }
-            .title {
-                font-size: 1.6rem;
-            }
-            .choice-voucher {
-                font-size: 1.4rem;
-                margin: 0px 0px 0px 25rem;
-                color: #0055aa;
+        }
+        .content {
+            display: flex;
+            align-items: center;
+            .name-number-phone {
                 font-weight: 500;
+                margin-right: 2rem;
+                .input-name {
+                    width: 20rem;
+                    margin-right: 2rem;
+                    outline: 0;
+                    height: 3rem;
+                }
+                .input-phone-number {
+                    width: 18rem;
+                    outline: 0;
+                    height: 3rem;
+                }
+            }
+            .input-user-address {
+                height: 3rem;
+                outline: 0;
+                width: 50rem;
+            }
+            .default {
+                margin-left: 2rem;
+                border: 1px solid #ccc;
+                color: $saled-color;
+                padding: 2px;
+            }
+            .btn-change-address {
+                margin-left: 5rem;
+                background-color: $primary-color;
+                padding: 0.6rem;
+                border: none;
+                color: $white-color;
+                border-radius: 2px;
+                cursor: pointer;
             }
         }
-        .total-payment {
-            height: 7rem;
+    }
+    .payment-product {
+        background-color: $white-color;
+        .title {
+            margin-bottom: 2rem;
+            padding: 2.4rem 3rem 0rem;
             display: flex;
             justify-content: space-between;
-            .delivery-fee {
+            .left {
+                font-size: 2rem;
+                font-weight: 500;
+            }
+            .right {
+                color: $saled-color;
                 display: flex;
-                margin: 0rem 5rem;
-                i {
-                    color: $primary-color;
-                    margin-right: 1rem;
-                }
-                span {
-                    padding-right: 1rem;
+                justify-content: end;
+                .right-title {
+                    padding: 0rem 0rem 0rem 10rem;
                 }
             }
-            .total {
-                color: #ee4d2d;
-                margin: 0px 0px 0px 2rem;
-            }
-            .button-buy {
-                height: 4rem;
-                width: 21rem;
-                border-radius: 3px;
-                border: none;
-                background-color: #ee4d2d;
+        }
+        .list-product {
+            .payment-child-product {
+                display: flex;
+                height: 5.5rem;
+                align-items: center;
                 font-size: 1.4rem;
-                color: $white-color;
-                padding: 1.3rem 3.6rem;
-                margin: 0px 0rem 0px 1.5rem;
+                padding: 0rem 3rem 2rem;
+                img {
+                    height: 4rem;
+                    width: 4rem;
+                    margin-right: 2rem;
+                }
+                .payment-child-product-name {
+                    width: 38rem;
+                    margin-right: 30rem;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+                .payment-child-product-more {
+                    width: 5rem;
+                    text-align: end;
+                }
+                .middle {
+                    margin: 0rem 14rem 0rem 9rem;
+                }
             }
+        }
+    }
+    .voucher-in-payment {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $white-color;
+        margin-top: 2rem;
+        padding: 4rem 3rem;
+        .voucher-title {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 500;
+            .voucher-icon {
+                width: 4rem;
+                height: 4rem;
+                margin-right: 2rem;
+            }
+        }
+        .action {
+            color: $primary-color;
+            cursor: pointer;
+        }
+    }
+    .payment-methods {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $white-color;
+        margin-top: 2rem;
+        padding: 4rem 3rem;
+        .payment-methods-title {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 500;
         }
     }
     .voucher-page {
         .voucher {
+            position: relative;
             overflow: scroll;
             border-radius: 3px;
             padding: 0rem 0rem 3rem 0px;
             margin: 10% auto;
-            width: 61rem;
+            width: 63rem;
             height: 50rem;
             background-color: $white-color;
             .header-voucher {
-                background-color: $white-color;
-                width: 61rem;
-                height: 12rem;
                 position: fixed;
+                background-color: $white-color;
+                width: 60rem;
+                height: 12rem;
                 padding: 3rem 3rem 0px;
                 .input-code {
                     background-color: #ccc;
@@ -163,7 +189,7 @@
             }
             .list-voucher {
                 padding: 3rem 3rem 1rem;
-                margin: 12rem 0px 0px 0px;
+                margin: 10rem 0px 0px 0px;
                 .voucher-freeship {
                     .child-voucher {
                         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

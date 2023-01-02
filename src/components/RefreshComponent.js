@@ -6,8 +6,8 @@ const refreshComponent = React.createContext({
     setRefresh: () => {},
     search: '',
     setSearch: () => {},
-    ai:'',
-    setAi:()=>{}
+    ai: '',
+    setAi: () => {},
 });
 
 export default refreshComponent;

@@ -56,11 +56,11 @@ const UserInfo = () => {
                             setComponent('Product');
                         }}
                     >
-                        <i className="far fa-box"></i>
+                        <i className="fa-solid fa-box"></i>
                         Sản Phẩm Của Tôi
                     </div>
                     <div className="child">
-                        <i className="far fa-clipboard-list-check"></i>
+                        <i className="fa-solid fa-clipboard-check"></i>
                         Đơn Hàng Đã Mua
                     </div>
                 </div>

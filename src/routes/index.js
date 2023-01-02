@@ -4,6 +4,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Cart from '../pages/Cart';
 import UserInfo from '../pages/UserInfo';
+import Payment from '../pages/Payment';
 
 const publicRoutes = [
     { path: '/', component: Homepages },
@@ -12,6 +13,7 @@ const publicRoutes = [
     { path: '/register', component: Register },
     { path: '/cart', component: Cart },
     { path: '/user', component: UserInfo },
+    { path: '/payment', component: Payment },
 ];
 
 const privateRoutes = [];

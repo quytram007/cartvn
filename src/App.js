@@ -10,11 +10,15 @@ function App() {
     const [refresh, setRefresh] = useState('');
     const [search, setSearch] = useState('');
     const [ai, setAi] = useState('');
+    console.log(ai);
     const value = { refresh, setRefresh, search, setSearch, ai, setAi };
     return (
         <refreshComponent.Provider value={value}>
             <Router>
                 <div className="App">
+                    <header>
+                        {/* <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css"></link> */}
+                    </header>
                     <Navbar />
                     <Routes>
                         {publicRoutes.map((route, index) => {

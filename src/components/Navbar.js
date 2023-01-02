@@ -7,30 +7,38 @@ import refreshComponent from './RefreshComponent';
 import _ from 'lodash';
 
 const Navbar = () => {
-    const { refresh, setSearch } = useContext(refreshComponent);
+    const { refresh, setSearch, search } = useContext(refreshComponent);
     const [isLogin, setIsLogin] = useState(false);
     const [infoUser, setInfoUser] = useState({
         product: [],
     });
-    const [inputSearch, setInputSearch] = useState();
-
+    const [inputSearch, setInputSearch] = useState(search);
+    console.log(refresh);
     useEffect(() => {
-        const data = { token: localStorage.getItem('token') };
-
-        try {
-            const verify = async () => {
-                const url = 'http://localhost:8000/api/verify';
-                const { data: res } = await axios.post(url, data);
-                console.log(res);
-                setInfoUser({
-                    fullName: res.data.fullName,
-                    avatar: res.data.avatar,
-                    product: res.product,
-                });
-                setIsLogin(true);
-            };
-            verify();
-        } catch (error) {}
+        setTimeout(() => {
+            const data = { token: localStorage.getItem('token') };
+            try {
+                if (data.token !== null) {
+                    console.log(data);
+                    const verify = async () => {
+                        const url = 'http://localhost:8000/api/verify';
+                        const { data: res } = await axios.post(url, data);
+                        console.log(res);
+                        setInfoUser({
+                            fullName: res.data.fullName,
+                            avatar: res.data.avatar,
+                            product: res.product,
+                        });
+                        setIsLogin(true);
+                    };
+                    verify();
+                } else {
+                    console.log('đã đăng xuất');
+                    setIsLogin(false);
+                    setInfoUser({});
+                }
+            } catch (error) {}
+        }, 1000);
     }, [refresh]);
     const handleOnLogOut = () => {
         localStorage.removeItem('token');
@@ -47,8 +55,8 @@ const Navbar = () => {
                         <div className="first-navbar-left-item">Tải ứng dụng</div>
                         <div className="first-navbar-left-item">
                             Kết nối
-                            <i className="fab fa-facebook"></i>
-                            <i className="fab fa-google"></i>
+                            <i className="fa-brands fa-facebook"></i>
+                            <i className="fa-brands fa-google"></i>
                         </div>
                     </div>
 
@@ -71,7 +79,7 @@ const Navbar = () => {
                                     {infoUser.avatar ? (
                                         <img src={infoUser.avatar.url} />
                                     ) : (
-                                        <i className="fas fa-user-circle"></i>
+                                        <i className="fa-solid fa-circle-user"></i>
                                     )}
                                     {infoUser.fullName}
                                 </div>
@@ -106,12 +114,12 @@ const Navbar = () => {
                             onChange={(e) => setInputSearch(e.target.value)}
                         ></input>
                         <div className="navbar-search-button" onClick={() => setSearch(inputSearch)}>
-                            <i className="fal fa-search"></i>
+                            <i className="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </div>
                     <div className="navbar-header-button-cart">
                         <Link to={'/cart'}>
-                            <i className="fal fa-shopping-cart"></i>
+                            <i className="fa-solid fa-cart-shopping"></i>
                         </Link>
                         {infoUser.product && infoUser.product.length > 0 && (
                             <>

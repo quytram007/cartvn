@@ -21,17 +21,16 @@ const DEFAULT = {
     like: false,
 };
 const BUY_DEFAULT = {
-    productImg:'',
-    productName:'',
+    productImg: '',
+    productName: '',
     productId: '',
     productPrice: '',
     productColor: '',
     productSize: '',
     quantity: 1,
 };
-let i = 0;
 const Detail = () => {
-    const { refresh, setRefresh } = useContext(refreshComponent);
+    const { setRefresh } = useContext(refreshComponent);
 
     const navigate = useNavigate();
     const [productDetail, setProductDetail] = useState(DEFAULT);
@@ -54,11 +53,14 @@ const Detail = () => {
     }, []);
     useEffect(() => {
         const productPrice = productDetail.price - (productDetail.price * productDetail.sale) / 100;
-        setProductBuy({ ...productBuy, productPrice: productPrice,
-            productId: productId ,
-            productName:productDetail.name,
+        setProductBuy({
+            ...productBuy,
+            productPrice: productPrice,
+            productId: productId,
+            productName: productDetail.name,
             productImg: productDetail.photo[0].image,
-            });
+            sellerId: productDetail.sellerId,
+        });
     }, [productDetail]);
 
     const handleOnAddToCart = (event) => {
@@ -73,7 +75,7 @@ const Detail = () => {
                 const { data: res } = await axios.post(url, data);
             };
             addToCart();
-            setRefresh(i++);
+            setRefresh(Math.random());
         } catch (error) {
             console.log(error);
         }
@@ -84,7 +86,7 @@ const Detail = () => {
             <div className="img-detail">
                 <img className="img-detail-photo" src={productDetail.photo[0].image}></img>
                 <div className="all-image">
-                    {productDetail.photo.map((value,index) => {
+                    {productDetail.photo.map((value, index) => {
                         return <img className="mini-image-detail" key={index} src={value.image}></img>;
                     })}
                 </div>
@@ -129,7 +131,7 @@ const Detail = () => {
                                 {productBuy.productColor === value && (
                                     <>
                                         <div className="tick-mark"></div>
-                                        <i className="far fa-check"></i>
+                                        <i className="fa-solid fa-check"></i>
                                     </>
                                 )}
                             </button>
@@ -149,7 +151,7 @@ const Detail = () => {
                                 {productBuy.productSize === value && (
                                     <>
                                         <div className="tick-mark"></div>
-                                        <i className="far fa-check"></i>
+                                        <i className="fa-solid fa-check"></i>
                                     </>
                                 )}
                             </button>
@@ -185,7 +187,7 @@ const Detail = () => {
                 </div>
                 <div className="buy-product genera-detail">
                     <div className="add-to-cart" onClick={(event) => handleOnAddToCart(event)}>
-                        <i className="fal fa-cart-plus"></i>
+                        <i className="fas fa-cart-plus"></i>
                         Thêm Vào giỏ hàng
                     </div>
                     <div className="buy-now" onClick={() => handleBuy()}>
