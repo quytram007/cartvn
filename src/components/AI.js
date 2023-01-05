@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import refreshComponent from './RefreshComponent';
 import '../styles/ai.scss';
-// const play = require('audio-play');
+import listChat from '../assets/ai/normal_chat.json';
 
 const AI = () => {
     //     try {
@@ -112,6 +112,10 @@ const AI = () => {
         }
         if (_ai.includes('cảm ơn') || _ai.includes('thank you')) {
             setAnswer('Không có gì, đây là nhiệm vụ của tôi mà');
+        }
+        if (Object.keys(listChat).includes(_ai)) {
+            const _answer = listChat[_ai];
+            setAnswer(_answer[Math.floor(Math.random() * _answer.length)]);
         }
     }, [ai]);
     const handleOnStart = () => {

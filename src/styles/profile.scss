@@ -1,86 +1,81 @@
 @import './base.scss';
 
-    .profile{
-        font-size: 1.4rem;
-        background-color: $white-color;
-        width: 99.3rem;
-        padding: 0 3rem 1rem ;
-        .header{
-            padding: 1.8rem 0rem;
-            text-align: start;
-            border-bottom: 1px solid #ccc;
-            .title{
-                font-size: 2rem;
-                color:#333333
-            }
-            .content{
-                margin: 3px 0px 0px;
-                color: #555555;
-            }
-            
+.profile {
+    font-size: 1.4rem;
+    background-color: $white-color;
+    width: 99.3rem;
+    padding: 0 3rem 1rem;
+    .header {
+        padding: 1.8rem 0rem;
+        text-align: start;
+        border-bottom: 1px solid #ccc;
+        .title {
+            font-size: 2rem;
+            color: #333333;
         }
-        .main{
-            height: 46rem;
-            padding: 3rem 0rem 0rem;
-            display: flex;
-            .form{
-                width: 65.2rem;
-                .user-form{
+        .content {
+            margin: 3px 0px 0px;
+            color: #555555;
+        }
+    }
+    .main {
+        padding: 3rem 0rem 0rem;
+        display: flex;
+        .form {
+            width: 65.2rem;
+            .user-form {
+                display: flex;
+                margin-bottom: 3rem;
+                align-items: center;
+                .lable {
+                    color: #555555cc;
+                    text-align: end;
+                    width: 12rem;
+                }
+                .content {
                     display: flex;
-                    margin-bottom: 3rem;
                     align-items: center;
-                    .lable{
-                        color: #555555CC;
-                        text-align: end;
-                        width: 12rem;
-                    }
-                    .content{
-                        display: flex;
-                        align-items: center;
-                        text-align: start;
-                        width: 45.9rem;
-                        height: 4rem;
-                        margin: 0px 0px 0px 2rem;
-                        outline: none;
-                    }
-                    .button-save{
-                        background-color: $primary-color;
-                        color: $white-color;
-                        width: 7rem;
-                        height: 4rem;
-                        padding: 0rem 2rem;
-                        margin-left: 14rem;
-                        border: none;
-                        border-radius: 3px;
-                    }
+                    text-align: start;
+                    width: 45.9rem;
+                    height: 4rem;
+                    margin: 0px 0px 0px 2rem;
+                    outline: none;
+                }
+                .button-save {
+                    background-color: $primary-color;
+                    color: $white-color;
+                    width: 7rem;
+                    height: 4rem;
+                    padding: 0rem 2rem;
+                    margin-left: 14rem;
+                    border: none;
+                    border-radius: 3px;
                 }
             }
-            .choice-avatar{
-                width: 28.1rem;
-                border-left: 1px solid #ccc;
-                height: 23.2rem;
-                display: block;
-                .avatar{
-                    font-size: 10rem;
-                    margin: 2rem auto;
+        }
+        .choice-avatar {
+            width: 28.1rem;
+            border-left: 1px solid #ccc;
+            height: 23.2rem;
+            display: block;
+            .avatar {
+                font-size: 10rem;
+                margin: 2rem auto;
+                width: 10rem;
+                height: 10rem;
+                img {
                     width: 10rem;
                     height: 10rem;
-                    img{
-                        width: 10rem;
-                        height: 10rem;
-                        border-radius: 90%;
-                    }
-                    
+                    border-radius: 90%;
                 }
-                button{
-                    width: 10rem;
-                    height: 4rem;
-                    padding: 1px 6px;
-                    border-radius: 3px;
-                    border: 1px solid #ccc;
-                }
-
+            }
+            button {
+                width: 10rem;
+                height: 4rem;
+                padding: 1px 6px;
+                border-radius: 3px;
+                border: 1px solid #ccc;
             }
         }
     }
-  
+}

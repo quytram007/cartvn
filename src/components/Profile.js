@@ -134,7 +134,7 @@ const Profile = () => {
                 <div className="choice-avatar">
                     <div className="avatar">
                         {userProfile.avatar ? (
-                            <img src={userProfile.avatar.url} />
+                            <img src={userProfile.avatar.url || userProfile.avatar} />
                         ) : (
                             <i className="fas fa-user-circle"></i>
                         )}

@@ -3,6 +3,9 @@ import { useLocation } from 'react-router-dom';
 import '../styles/payment.scss';
 import axios from 'axios';
 import voucherIcon from '../assets/logo/coupon.png';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { useNavigate } from 'react-router-dom';
+import refreshComponent from '../components/RefreshComponent';
 const DEFAULT = {
     name: 'Trương Thành Quý',
     phoneNumber: '0335551118',
@@ -32,6 +35,7 @@ const DEFAULT_VOUCHER = [
     },
 ];
 const Payment = () => {
+    const { setRefresh } = useContext(refreshComponent);
     const { state } = useLocation();
     const [isShowVoucher, setIsShowVoucher] = useState(false);
     const [payment, setPayment] = useState(state);
@@ -39,6 +43,7 @@ const Payment = () => {
     const [voucherCode, setVoucherCode] = useState('');
     const [listVoucher, setListVoucher] = useState(DEFAULT_VOUCHER);
     const [voucherChoice, setVoucerChoice] = useState({});
+    const [isShowPayPal, setIsShowPayPal] = useState(false);
     const [inputAddress, setInputAddress] = useState({
         name: '',
         phoneNumber: '',
@@ -53,7 +58,14 @@ const Payment = () => {
                 const url = 'http://localhost:8000/api/payment';
                 const { data: res } = await axios.post(url, data);
                 console.log(res);
-                setPayment({ ...payment, name: res.name, phoneNumber: res.phoneNumber, address: res.address });
+                setPayment({
+                    ...payment,
+                    name: res.name,
+                    phoneNumber: res.phoneNumber,
+                    address: res.address,
+                    total: payment.total + payment.deliveryCost,
+                    payAlready: false,
+                });
             } catch (error) {}
         })();
     }, []);
@@ -113,6 +125,7 @@ const Payment = () => {
             setPayment({
                 ...payment,
                 deliveryCost: payment.deliveryCost - voucherChoice.discount,
+                total: payment.total - voucherChoice.discount,
                 afterDiscount: payment.total,
             });
     };
@@ -128,6 +141,22 @@ const Payment = () => {
             console.log(error);
         }
     }, []);
+    useEffect(() => {
+        setPayment({ ...payment, total: payment.total + payment.deliveryCost });
+    }, [payment.product]);
+    let navigate = useNavigate();
+    const handleOnFinish = async () => {
+        try {
+            const url = 'http://localhost:8000/api/payment/finish';
+            const data = {
+                token: localStorage.getItem('token'),
+                payment,
+            };
+            navigate('/');
+            setRefresh(Math.random());
+            const { data: res } = await axios.post(url, data);
+        } catch (error) {}
+    };
     return (
         <div className="last-payment grid">
             <div className="address">
@@ -209,6 +238,66 @@ const Payment = () => {
             </div>
             <div className="payment-methods">
                 <div className="payment-methods-title">Phương Thức Thanh Toán</div>
+                <div onClick={() => setIsShowPayPal(true)}>Thanh Toán Bằng PayPal</div>
+                {isShowPayPal === true && (
+                    <div>
+                        {payment.payAlready === false ? (
+                            <div>
+                                <PayPalScriptProvider
+                                    options={{
+                                        'client-id':
+                                            'AaNQ4WZ2aDxMFX-7Hj1ZVbgKh8J0TOpnSw2my4Wanan_5DHZyNOkif82BbN0HmhBH7LiHlUZ5cWyIlPG',
+                                    }}
+                                >
+                                    <PayPalButtons
+                                        createOrder={(data, actions) => {
+                                            return actions.order.create({
+                                                purchase_units: [
+                                                    {
+                                                        amount: {
+                                                            value: `${(payment.total * 0.000042).toFixed(2)}`,
+                                                        },
+                                                    },
+                                                ],
+                                            });
+                                        }}
+                                        onApprove={(data, actions) => {
+                                            return actions.order.capture().then((details) => {
+                                                const name = details.payer.name.given_name;
+                                                setPayment({ ...payment, payAlready: true });
+                                            });
+                                        }}
+                                    />
+                                </PayPalScriptProvider>
+                            </div>
+                        ) : (
+                            <div>Đã Thanh Toán Thành Công</div>
+                        )}
+                    </div>
+                )}
+
+                {isShowPayPal === false && <div>Thanh Toán Khi Nhận Hàng</div>}
+            </div>
+            <div className="last-check">
+                <div>
+                    <div className="last-check-child">
+                        <span>Tổng Tiền hàng :</span>
+                        <span>₫{((payment.total - payment.deliveryCost) / 1000).toFixed(3)}</span>
+                    </div>
+                    <div className="last-check-child">
+                        <span>Phí Giao Hàng :</span>
+                        <span>₫{(payment.deliveryCost / 1000).toFixed(3)}</span>
+                    </div>
+                    <div className="last-check-child">
+                        <span>Tổng Tiền Thanh Toán :</span>
+                        <span className="total">₫{(payment.total / 1000).toFixed(3)}</span>
+                    </div>
+                    <div className="last-check-child last">
+                        <button className="btn" onClick={() => handleOnFinish()}>
+                            Đặt Hàng
+                        </button>
+                    </div>
+                </div>
             </div>
             {isShowVoucher && isShowVoucher === true && (
                 <div className="voucher-page">

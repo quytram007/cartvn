@@ -143,6 +143,39 @@
             font-weight: 500;
         }
     }
+    .last-check {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        background-color: $white-color;
+        margin-top: 2rem;
+        padding: 4rem 3rem;
+        .last-check-child {
+            width: 30rem;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            .total {
+                color: $primary-color;
+                font-size: 1.8rem;
+            }
+        }
+        .last {
+            display: flex;
+            justify-content: end;
+            .btn {
+                height: 4rem;
+                width: 10rem;
+                border-radius: 3px;
+                border: none;
+                background-color: $primary-color;
+                font-size: 1.4rem;
+                color: $white-color;
+                padding: 1.3rem 2rem;
+                cursor: pointer;
+            }
+        }
+    }
     .voucher-page {
         .voucher {
             position: relative;

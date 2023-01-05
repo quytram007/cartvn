@@ -1,7 +1,8 @@
 import '../styles/register.scss';
 import axios from 'axios';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const [data, setData] = useState({
         fullName: '',
@@ -31,11 +32,13 @@ const Register = () => {
             }
         }
     };
+    let navigate = useNavigate();
     const handleOnVerify = async () => {
         try {
             const url = 'http://localhost:8000/api/users';
             const { data: res } = await axios.post(url, data);
             console.log(res.message);
+            navigate('/login');
         } catch (error) {
             if (error.response.status && error.response.status >= 400 && error.response.status <= 500) {
                 setError(error.response.data.message);

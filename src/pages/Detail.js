@@ -3,6 +3,7 @@ import { useParams, useNavigate, Router } from 'react-router-dom';
 import '../styles/detail.scss';
 import axios from 'axios';
 import refreshComponent from '../components/RefreshComponent';
+import AlertMassage from '../components/AlertMessage';
 
 const DEFAULT = {
     id: '01',
@@ -31,7 +32,7 @@ const BUY_DEFAULT = {
 };
 const Detail = () => {
     const { setRefresh } = useContext(refreshComponent);
-
+    const [showAlert, setShowAlert] = useState(false);
     const navigate = useNavigate();
     const [productDetail, setProductDetail] = useState(DEFAULT);
 
@@ -65,7 +66,9 @@ const Detail = () => {
 
     const handleOnAddToCart = (event) => {
         event.preventDefault();
+
         try {
+            setShowAlert(true);
             const addToCart = async () => {
                 const data = {
                     token: localStorage.getItem('token'),
@@ -195,6 +198,13 @@ const Detail = () => {
                     </div>
                 </div>
             </div>
+            {showAlert === true && (
+                <AlertMassage
+                    className="alert"
+                    message="Đã Thêm Vào Giỏ Hàng"
+                    style={{ position: 'fixed' }}
+                ></AlertMassage>
+            )}
         </div>
     );
 };

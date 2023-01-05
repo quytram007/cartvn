@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Profile from '../components/Profile';
 import Product from '../components/Product';
+import ListProduct from '../components/ListProduct';
 const DEFAULT = {
     fullName: '',
     name: '',
@@ -11,7 +12,6 @@ const DEFAULT = {
     birthday: '',
     address: '',
 };
-
 const UserInfo = () => {
     const [component, setComponent] = useState('Profile');
     const [userProfile, setUserProfile] = useState(DEFAULT);
@@ -59,13 +59,18 @@ const UserInfo = () => {
                         <i className="fa-solid fa-box"></i>
                         Sản Phẩm Của Tôi
                     </div>
-                    <div className="child">
+                    <div
+                        className="child"
+                        onClick={() => {
+                            setComponent('History');
+                        }}
+                    >
                         <i className="fa-solid fa-clipboard-check"></i>
                         Đơn Hàng Đã Mua
                     </div>
                 </div>
             </div>
-            {component === 'Profile' ? <Profile /> : component === 'Product' ? <Product /> : <div></div>}
+            {component === 'History' ? <ListProduct /> : component === 'Product' ? <Product /> : <Profile />}
         </div>
     );
 };

@@ -27,7 +27,7 @@ const SearchResult = () => {
                     search: search,
                 };
                 const product = await (await axios.post(url, data)).data.product;
-                console.log(product);
+                console.log('xxxxxxxxxxxxxx', product);
                 setListProduct(product);
             };
             getProduct();

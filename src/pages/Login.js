@@ -4,11 +4,14 @@ import '../styles/login.scss';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 const Login = () => {
     const [data, setData] = useState({
         email: '',
         password: '',
     });
+    const [showAlert, setShowAlert] = useState(false);
 
     const [error, setError] = useState('');
     const handleChange = (input) => {
@@ -23,6 +26,7 @@ const Login = () => {
             localStorage.setItem('token', res.data);
             window.location = '/';
             setError('');
+            setShowAlert(true);
         } catch (error) {
             if (error.response.status && error.response.status >= 400 && error.response.status <= 500) {
                 setError(error.response.data.message);
@@ -65,6 +69,13 @@ const Login = () => {
                         <Link to="/register" className="btn-sign-up">
                             Đăng ký
                         </Link>
+                        {showAlert === false && (
+                            <Snackbar open={showAlert} autoHideDuration={2000}>
+                                <Alert severity="success" sx={{ width: '100%' }}>
+                                    This is a success message!
+                                </Alert>
+                            </Snackbar>
+                        )}
                     </div>
                 </form>
             </div>

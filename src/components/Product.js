@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import iconAdd from '../assets/logo/add-photo.png';
+import AlertMassage from './AlertMessage';
+import { useNavigate } from 'react-router-dom';
 const DEFAULT = [
     {
         _id: '',
@@ -18,14 +20,18 @@ const DEFAULT_ADD = {
     color: [],
     size: [],
     quantity: '',
+    sale: '',
     description: '',
     _color: '',
     _size: '',
 };
+
 const Product = () => {
+    const [showAlert, setShowAlert] = useState(false);
     const [listProduct, setListProduct] = useState(DEFAULT);
     const handleChoicePhoto = useRef();
     const [addProduct, setAddProduct] = useState(DEFAULT_ADD);
+
     useEffect(() => {
         try {
             const getProduct = async () => {
@@ -47,8 +53,11 @@ const Product = () => {
             setAddProduct({ ...addProduct, photo: [...addProduct.photo, reader.result] });
         };
     };
+    let naviagte = useNavigate();
     const handleOnUploadProduct = async () => {
         try {
+            setAddProduct(DEFAULT_ADD);
+            setShowAlert(true);
             const url = 'http://localhost:8000/api/product/addproduct';
             const token = localStorage.getItem('token');
             const data = {
@@ -121,6 +130,15 @@ const Product = () => {
                             <input
                                 value={addProduct.quantity}
                                 onChange={(e) => setAddProduct({ ...addProduct, quantity: e.target.value })}
+                            ></input>
+                        </div>
+                    </div>
+                    <div className="product-price">
+                        <div>
+                            <span>Giảm Giá</span>
+                            <input
+                                value={addProduct.sale}
+                                onChange={(e) => setAddProduct({ ...addProduct, sale: e.target.value })}
                             ></input>
                         </div>
                     </div>
@@ -202,6 +220,13 @@ const Product = () => {
                     </div>
                 </div>
             </div>
+            {showAlert === true && (
+                <AlertMassage
+                    className="alert"
+                    message="upload thành công"
+                    style={{ position: 'fixed' }}
+                ></AlertMassage>
+            )}
         </div>
     );
 };
